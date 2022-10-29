@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import Styles from '../constants/Styles';
 import ExpenseList from '../components/ExpenseList';

@@ -1,14 +1,23 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import Styles from '../constants/Styles';
 import Colors from '../constants/Colors';
-export default function EditButton({ text, width, marginTop }) {
+export default function EditButton({ text, width, marginTop, editFunction }) {
   return (
-    <View style={styles.container}>
-      <View style={[styles.textContainer, { width: width, marginTop: marginTop }]}>
-        <Text style={styles.text}>{text} </Text>
+    <Pressable
+      onPress={() => {
+        editFunction();
+      }}
+      style={({ pressed }) => {
+        return pressed && Styles.pressedItem;
+      }}
+    >
+      <View style={styles.container}>
+        <View style={[styles.textContainer, { width: width, marginTop: marginTop }]}>
+          <Text style={styles.text}>{text} </Text>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 

@@ -1,11 +1,22 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import Colors from '../constants/Colors';
-export default function AddButtonLater({ text, left }) {
+import Styles from '../constants/Styles';
+export default function AddButtonLater({ text, left, onAddFunction }) {
   return (
-    <View style={[styles.textContainer, { marginLeft: left }]}>
-      <Text style={styles.text}>{text} </Text>
-    </View>
+    <Pressable
+      onPress={() => {
+        onAddFunction();
+      }}
+      style={({ pressed }) => {
+        return pressed && Styles.pressedItem;
+      }}
+      android_ripple={{ color: '#223355', foreground: true }}
+    >
+      <View style={[styles.textContainer, { marginLeft: left }]}>
+        <Text style={styles.text}>{text} </Text>
+      </View>
+    </Pressable>
   );
 }
 

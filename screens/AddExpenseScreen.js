@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Pressable, ScrollView, Alert, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView, Alert } from 'react-native';
 import React from 'react';
 import Styles from '../constants/Styles';
 import Colors from '../constants/Colors';
@@ -8,7 +8,7 @@ export default function AddExpenseScreen({ navigation }) {
   const [amount, onChangeAmount] = React.useState('');
   const [description, onChangeDescription] = React.useState('');
   function onCancel() {
-    console.log('cancel pressed');
+    navigation.navigate('All Expenses');
   }
   async function onSubmit() {
     if (!amount || !description || isNaN(amount)) {
@@ -28,28 +28,8 @@ export default function AddExpenseScreen({ navigation }) {
         <Text style={[styles.smallText, { marginTop: 8, marginLeft: 20 }]}>Description</Text>
         <TextInput multiline={true} style={[styles.input, { height: 90, textAlignVertical: 'top' }]} onChangeText={onChangeDescription} value={description} />
         <View style={styles.buttonContainer}>
-          <Pressable
-            onPress={() => {
-              onCancel();
-            }}
-            style={({ pressed }) => {
-              return pressed && Styles.pressedItem;
-            }}
-            android_ripple={{ color: '#223355', foreground: true }}
-          >
-            <AddButtonLater left={0} text={'Cancel'}></AddButtonLater>
-          </Pressable>
-
-          <Pressable
-            onPress={() => {
-              onSubmit();
-            }}
-            style={({ pressed }) => {
-              return pressed && styles.pressedItem;
-            }}
-          >
-            <AddButtonLater left={20} text={'Submit'}></AddButtonLater>
-          </Pressable>
+          <AddButtonLater onAddFunction={onCancel} left={0} text={'Cancel'}></AddButtonLater>
+          <AddButtonLater onAddFunction={onSubmit} left={20} text={'Submit'}></AddButtonLater>
         </View>
       </ScrollView>
     </View>
