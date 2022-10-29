@@ -4,14 +4,16 @@ import Styles from '../constants/Styles';
 import Colors from '../constants/Colors';
 import EditButton from '../components/EditButton';
 import { deleteFromDB, updateToDB } from '../firebase/firestore';
-export default function EditExpenseScreen({ route }) {
+export default function EditExpenseScreen({ route, navigation }) {
   async function onMarkImportant() {
     let expense = route.params.expense;
     expense.important = true;
     await updateToDB(expense);
+    navigation.navigate('All Expenses');
   }
   async function onMarkDelete() {
     await deleteFromDB(route.params.expense.key);
+    navigation.navigate('All Expenses');
   }
   return (
     <View style={Styles.background}>
@@ -20,7 +22,7 @@ export default function EditExpenseScreen({ route }) {
           onMarkImportant();
         }}
         style={({ pressed }) => {
-          return pressed && styles.pressedItem;
+          return pressed && Styles.pressedItem;
         }}
       >
         <EditButton text={'Mark as important'} width={200} marginTop={40}></EditButton>
@@ -30,7 +32,7 @@ export default function EditExpenseScreen({ route }) {
           onMarkDelete();
         }}
         style={({ pressed }) => {
-          return pressed && styles.pressedItem;
+          return pressed && Styles.pressedItem;
         }}
       >
         <EditButton text={'Delete'} width={180} marginTop={25}></EditButton>
@@ -40,10 +42,6 @@ export default function EditExpenseScreen({ route }) {
 }
 const styles = StyleSheet.create({
   scrollView: {},
-  pressedItem: {
-    backgroundColor: '#222',
-    opacity: 0.5,
-  },
   container: {
     justifyContent: 'center',
     alignItems: 'center',

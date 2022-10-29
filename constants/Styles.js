@@ -9,4 +9,5 @@ export default StyleSheet.create({
     top: 0,
     height: '120%',
   },
+  pressedItem: { backgroundColor: '#222', opacity: 0.5 },
 });

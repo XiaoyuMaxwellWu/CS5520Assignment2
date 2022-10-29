@@ -3,7 +3,7 @@ import React from 'react';
 import Colors from '../constants/Colors';
 import { writeToDB } from '../firebase/firestore';
 import Expense from './Expense';
-
+import Styles from '../constants/Styles';
 export default function ExpenseList({ expenses, onItemPress }) {
   return (
     <ScrollView>
@@ -15,7 +15,7 @@ export default function ExpenseList({ expenses, onItemPress }) {
               onItemPress(expense);
             }}
             style={({ pressed }) => {
-              return pressed && styles.pressedItem;
+              return pressed && Styles.pressedItem;
             }}
           >
             <Expense amount={expense.amount} description={expense.description}></Expense>
@@ -25,32 +25,3 @@ export default function ExpenseList({ expenses, onItemPress }) {
     </ScrollView>
   );
 }
-const styles = StyleSheet.create({
-  scrollView: {},
-  pressedItem: {
-    backgroundColor: '#222',
-    opacity: 0.5,
-  },
-
-  textContainer: {
-    padding: 15,
-    margin: 30,
-    borderRadius: 5,
-    backgroundColor: Colors.deepBlue,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  text: {
-    color: 'white',
-    borderRadius: 5,
-    fontSize: 20,
-  },
-  amountContainer: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 80,
-    height: 30,
-  },
-});

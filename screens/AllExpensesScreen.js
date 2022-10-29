@@ -8,7 +8,6 @@ import { firestore } from '../firebase/firebase-setup';
 
 export default function AllExpensesScreen({ navigation }) {
   async function onItemPress(expense) {
-    console.log('pressed');
     navigation.navigate('Edit Expense', { expense: expense });
   }
 

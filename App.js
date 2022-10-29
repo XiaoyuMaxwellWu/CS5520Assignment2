@@ -22,7 +22,6 @@ export default function App() {
           name="All Expenses"
           component={AllExpensesScreen}
           options={({ navigation }) => ({
-            // navigation.navigate('Add Expense');
             headerRight: () => {
               return (
                 <View style={{ marginRight: 20 }}>
@@ -43,7 +42,14 @@ export default function App() {
         <Tab.Screen
           name="Important Expenses"
           component={ImportantExpensesScreen}
-          options={{
+          options={({ navigation }) => ({
+            headerRight: () => {
+              return (
+                <View style={{ marginRight: 20 }}>
+                  <AddButton navigation={navigation}></AddButton>
+                </View>
+              );
+            },
             tabBarIcon: ({ focused }) => {
               return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -52,7 +58,7 @@ export default function App() {
                 </View>
               );
             },
-          }}
+          })}
         />
       </Tab.Navigator>
     );
