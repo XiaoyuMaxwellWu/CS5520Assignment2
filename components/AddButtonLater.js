@@ -14,7 +14,7 @@ export default function AddButtonLater({ text, left, onAddFunction }) {
       android_ripple={{ color: '#223355', foreground: true }}
     >
       <View style={[styles.textContainer, { marginLeft: left }]}>
-        <Text style={styles.text}>{text} </Text>
+        <Text style={Styles.text}>{text} </Text>
       </View>
     </Pressable>
   );
@@ -28,9 +28,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.deepBlue,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  text: {
-    fontSize: 15,
-    color: 'white',
   },
 });

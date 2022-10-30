@@ -8,9 +8,7 @@ export default function EditExpenseScreen({ route, navigation }) {
     Alert.alert('Important', 'Are you sure you want to mark this as important?', [
       {
         text: 'No',
-        onPress: () => {
-          navigation.navigate('All Expenses');
-        },
+        onPress: () => {},
         style: 'cancel',
       },
       {
@@ -19,7 +17,7 @@ export default function EditExpenseScreen({ route, navigation }) {
           let expense = route.params.expense;
           expense.important = true;
           await updateToDB(expense);
-          navigation.navigate('All Expenses');
+          navigation.goBack();
         },
       },
     ]);
@@ -28,16 +26,14 @@ export default function EditExpenseScreen({ route, navigation }) {
     Alert.alert('Delete', 'Are you sure you want to delete this?', [
       {
         text: 'No',
-        onPress: () => {
-          navigation.navigate('All Expenses');
-        },
+        onPress: () => {},
         style: 'cancel',
       },
       {
         text: 'Yes',
         onPress: async () => {
           await deleteFromDB(route.params.expense.key);
-          navigation.navigate('All Expenses');
+          navigation.goBack();
         },
       },
     ]);

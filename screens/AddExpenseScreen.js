@@ -11,13 +11,13 @@ export default function AddExpenseScreen({ navigation }) {
     navigation.navigate('All Expenses');
   }
   async function onSubmit() {
-    if (!amount || !description || isNaN(amount)) {
+    if (!amount || !description || isNaN(amount) || parseInt(amount) < 0) {
       Alert.alert('invalid output', 'Please check your input values', [{ text: 'OK', style: 'destructive' }]);
       return;
     }
     const expense = { amount: amount, description: description, important: false };
     await writeToDB(expense);
-    navigation.navigate('All Expenses');
+    navigation.goBack();
   }
   return (
     <View style={[Styles.background]}>

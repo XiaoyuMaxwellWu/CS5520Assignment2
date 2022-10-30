@@ -14,7 +14,7 @@ export default function EditButton({ text, width, marginTop, editFunction }) {
     >
       <View style={styles.container}>
         <View style={[styles.textContainer, { width: width, marginTop: marginTop }]}>
-          <Text style={styles.text}>{text} </Text>
+          <Text style={Styles.text}>{text} </Text>
         </View>
       </View>
     </Pressable>
@@ -33,9 +33,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.deepBlue,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 20,
   },
 });
